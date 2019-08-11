@@ -5,7 +5,7 @@ This tool helps you to generate index page for nginx. This page will contain all
 1. Clone this repo 
     ```
     mkdir /opt/nipg
-    git clone url -o /opt/nipg
+    git clone https://github.com/P1-Ro/nipg.git /opt/nipg
     ```
 
 2. Install service for it 
@@ -40,6 +40,8 @@ For this generator to function properly your nginx needs to be setup in specific
    
    Only locations which have `{` followed by `#` will be included in index page.
    Text which follows after `#` server as description to given location (optional).
+   
+   For more examples see `nginx_example` folder.
 
 ### App configuration
 Apps generate index page from templates present in templates folder.
