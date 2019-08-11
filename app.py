@@ -2,6 +2,8 @@ import os
 import sys
 import time
 import logging
+
+from watchdog.events import FileSystemEvent
 from watchdog.observers import Observer
 
 from lib.GeneratingEventHandler import GeneratingEventHandler
@@ -33,7 +35,4 @@ if __name__ == "__main__":
             observer.join()
     elif sys.argv[1] == 'reload':
         handler = GeneratingEventHandler(OUTPUT_FILE, PAGE_TEMPLATE, LINK_TEMPLATE)
-        handler.on_modified({
-            "is_directory": False,
-            "event.src_path": os.path.join(FOLDER_TO_WATCH, "services.conf")
-        })
+        handler.on_modified(FileSystemEvent(os.path.join(FOLDER_TO_WATCH, "services.conf")))
