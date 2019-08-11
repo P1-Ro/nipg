@@ -14,7 +14,6 @@ class GeneratingEventHandler(FileSystemEventHandler):
         self.path_to_file = path_to_file
 
     def on_modified(self, event):
-        super(GeneratingEventHandler, self).on_modified(event)
 
         if not event.is_directory:
             services = []

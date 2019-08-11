@@ -5,6 +5,7 @@ After=network.target
 [Service]
 ExecStart=python3 /opt/nipg/app.py start
 ExecStop=python3 /opt/nipg/app.py stop
+ExecReload=python3 /opt/nipg/app.py reload
 
 [Install]
 WantedBy=multi-user.target
