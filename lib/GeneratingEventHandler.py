@@ -23,7 +23,7 @@ class GeneratingEventHandler(FileSystemEventHandler):
                 for line in lines:
                     if re.match(r'location .* #', line):
                         try:
-                            name = re.search("/[^{]*", line).group(0).replace("/", "").strip().capitalize()
+                            name = re.search("/[^{]*", line).group(0).replace("/", "").strip()
                             description = re.search("#.*", line).group(0).replace("#", "").strip().capitalize()
                             services.append(Service(name, description))
                         except:
@@ -36,7 +36,7 @@ class GeneratingEventHandler(FileSystemEventHandler):
         link_template = open(self.item_template, "r").read()
 
         for service in services:
-            result += link_template.replace("{{link}}", service.name)\
+            result += link_template.replace("{{link}}", service.link)\
                         .replace("{{name}}", service.name)\
                         .replace("{{description}}", service.description)
         return result
