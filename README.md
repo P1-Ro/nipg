@@ -8,13 +8,18 @@ This tool helps you to generate index page for nginx. This page will contain all
     git clone https://github.com/P1-Ro/nipg.git /opt/nipg
     ```
 
-2. Install service for it 
+2. Install dependecies
+    ```
+   pip install -r /opt/nipg/requirements.txt
+   ```
+
+3. Install service 
     ```
     sudo cp /opt/nipg/nipg.service /etc/systemd/system/
     ```
    :warning: **If you cloned it to different location you also need to change paths in `nipg.service`**
 
-3. Start service and enable it on boot
+4. Start service and enable it on boot
     ```
    systemctl start nipg && systemctl enable nipg
    ```
