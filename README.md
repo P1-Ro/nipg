@@ -10,7 +10,7 @@ This tool helps you to generate index page for nginx. This page will contain all
 
 2. Install dependecies
     ```
-   pip install -r /opt/nipg/requirements.txt
+   pip3 install -r /opt/nipg/requirements.txt
    ```
 
 3. Install service 
