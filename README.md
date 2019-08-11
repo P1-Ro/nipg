@@ -23,6 +23,7 @@ This tool helps you to generate index page for nginx. This page will contain all
     ```
    systemctl start nipg && systemctl enable nipg
    ```
+   If service is already running and you want to force generation use `systemctl reload nipg`
 
 ## Configuration
 For this generator to function properly your nginx needs to be setup in specific but easy way
