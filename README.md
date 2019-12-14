@@ -4,7 +4,9 @@ This tool helps you to generate index page for nginx. This page will contain all
 ## Installation
 ### Automatic
 
-curl https://urlhere.com | sudo bash
+    ```
+    curl https://raw.githubusercontent.com/P1-Ro/nipg/master/install.sh | sudo bash
+    ```
 
 ### Manual
 
