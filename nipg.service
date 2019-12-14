@@ -3,9 +3,9 @@ Description=Automatically generates index page for nginx server
 After=network.target
 
 [Service]
-ExecStart=python3 /opt/nipg/app.py start
-ExecStop=python3 /opt/nipg/app.py stop
-ExecReload=python3 /opt/nipg/app.py reload
+ExecStart=python /opt/nipg/app.py start
+ExecStop=python /opt/nipg/app.py stop
+ExecReload=python /opt/nipg/app.py reload
 
 [Install]
 WantedBy=multi-user.target
