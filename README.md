@@ -1,5 +1,5 @@
 # Index page generator for [nginx](https://www.nginx.com/)
-This tool helps you to generate index page for nginx. This page will contain all locations which you configure, be it proxy_pass or static files.
+This tool helps you to generate index page for nginx. Resulting page will contain all locations, no matter if it's proxy_pass or static file.
 
 ## Installation
 ### Automatic
@@ -14,7 +14,7 @@ This tool helps you to generate index page for nginx. This page will contain all
     git clone https://github.com/P1-Ro/nipg.git /opt/nipg
     ```
 
-2. Install dependecies
+2. Install dependencies
     ```
    pip install -r /opt/nipg/requirements.txt
    ```
@@ -39,7 +39,7 @@ This tool helps you to generate index page for nginx. This page will contain all
 ## Configuration
 For this generator to function properly your nginx needs to be setup in specific but easy way
 
-1. Include following line in `default` coonfiguration of nginx
+1. Include following line in `default` configuration of nginx
     ```
    include sites-available/services.conf;
     ```
@@ -54,14 +54,14 @@ For this generator to function properly your nginx needs to be setup in specific
    Only locations which have `{` followed by `#` will be included in index page.
    Text which follows after `#` server is description to given location (optional).
 
-### App customization
-Apps generate index page from templates present in templates folder.
+### Output customization
+Tool generates index page from templates present in templates folder.
 When modifying templates `{{links}}` tags needs to be present on place when you want to include generated links.
 
-When modyfying link template these self-explanatory tags needs to be present: `{{name}}, {{link}}, {{description}} `
+When modifying link template these self-explanatory tags needs to be present: `{{name}}, {{link}}, {{description}} `
 
 ## Usage
-With service started an enabled app watches `sites-available` folder and if there are any changes it creates new index.html page in `/var/www/html`.
+With service started an enabled tool watches `sites-available` folder and if there are any changes it creates new index.html page in `/var/www/html`.
 
 ## Preview
 ![Screenshot of web interface](https://github.com/P1-Ro/nipg/blob/master/preview.png)
