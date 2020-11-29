@@ -14,12 +14,7 @@ This tool helps you to generate index page for nginx. Resulting page will contai
     git clone https://github.com/P1-Ro/nipg.git /opt/nipg
     ```
 
-2. Install dependencies
-    ```
-   pip install -r /opt/nipg/requirements.txt
-   ```
-
-3. Install service 
+2. Install service 
     ```
     sudo ln -s /opt/nipg/nipg.service /etc/systemd/system/
     ```
@@ -30,14 +25,14 @@ This tool helps you to generate index page for nginx. Resulting page will contai
        sudo ln -s /opt/nipg/nginx_example/proxy.conf /etc/nginx/
     ```
 
-4. Start service and enable it on boot
+4. Start service
     ```
-   systemctl start nipg && systemctl enable nipg
+   systemctl start nipg 
    ```
-   If service is already running and you want to force generation use `systemctl reload nipg`
+   If you want to reload nginx configuration and re-generate index page run `systemctl start nipg`
 
 ## Configuration
-For this generator to function properly your nginx needs to be setup in specific but easy way
+For this generator to function properly your nginx needs to be setup in specific but easy way (done automatically with install script)
 
 1. Include following line in `default` configuration of nginx
     ```
