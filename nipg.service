@@ -1,12 +1,11 @@
 [Unit]
 Description=Automatically generates index page for nginx server
 After=network.target
-ReloadPropagatedFrom=nginx.service
-PartOf=nginx.service
 
 [Service]
 Type=oneshot
 ExecStart=python /opt/nipg/app.py
+ExecStartPost=systemctl reload nginx
 
 [Install]
 WantedBy=multi-user.target
