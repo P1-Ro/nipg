@@ -1,34 +1,31 @@
 import logging
 import re
 
-from watchdog.events import FileSystemEventHandler
-
 from lib.Service import Service
 
 
-class GeneratingEventHandler(FileSystemEventHandler):
+class GenerationHandler():
 
-    def __init__(self, path_to_file, page_template, item_template):
+    def __init__(self, services_file, output_file, page_template, item_template):
         self.page_template = page_template
         self.item_template = item_template
-        self.path_to_file = path_to_file
+        self.output_file = output_file
+        self.services_file = services_file
 
-    def on_modified(self, event):
+    def generate(self):
+        services = []
+        with open(self.services_file, "r") as text_file:
+            lines = text_file.readlines()
+            for line in lines:
+                if re.match(r'location .* #', line):
+                    try:
+                        name = re.search("/[^{]*", line).group(0).replace("/", "").strip()
+                        description = re.search("#.*", line).group(0).replace("#", "").strip().capitalize()
+                        services.append(Service(name, description))
+                    except:
+                        logging.error("Can't parse line: %s", line)
 
-        if not event.is_directory:
-            services = []
-            with open(event.src_path, "r") as text_file:
-                lines = text_file.readlines()
-                for line in lines:
-                    if re.match(r'location .* #', line):
-                        try:
-                            name = re.search("/[^{]*", line).group(0).replace("/", "").strip()
-                            description = re.search("#.*", line).group(0).replace("#", "").strip().capitalize()
-                            services.append(Service(name, description))
-                        except:
-                            logging.error("Can't parse line: %s", line)
-
-            self.update_file(self.generate_html(services))
+        self.update_file(self.generate_html(services))
 
     def generate_links(self, services):
         result = ""
@@ -46,6 +43,6 @@ class GeneratingEventHandler(FileSystemEventHandler):
             return text_file.read().replace("{{links}}", links)
 
     def update_file(self, content):
-        with open(self.path_to_file, "w") as text_file:
+        with open(self.output_file, "w") as text_file:
             text_file.write(content)
         logging.info("file updated successfully")
